@@ -3,9 +3,8 @@
 
 // Required parameters:
 // @raycast.schemaVersion 1
-// @raycast.title Add Idea
+// @raycast.title Add Random Idea
 // @raycast.mode silent
-// @raycast.refreshTime 1h
 
 // Optional parameters:
 // @raycast.icon 💡
@@ -32,7 +31,7 @@ async function addIdea() {
 		await axios.post(`${uri}/addIdea`, payload);
 		console.log("Idea Added!");
 	} catch (e) {
-		console.log(e);
+		console.log("ERROR!");
 	}
 }
 addIdea();
