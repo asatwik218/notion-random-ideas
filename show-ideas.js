@@ -25,7 +25,7 @@ async function showAllIdeas() {
 		const res = await axios.get(`${uri}/allIdeas`);
 		res.data.reverse().forEach((idea) => {
 			// console.log(`➡️ \x1b[1m ${idea}\n`);
-			console.log(`👉 ${idea}\n \x1b[0m`);
+			console.log(`➡️ ${idea}\n \x1b[0m`);
 		});
 	} catch (e) {
 		console.log(e);
