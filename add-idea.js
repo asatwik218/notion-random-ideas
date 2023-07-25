@@ -3,14 +3,16 @@
 
 // Required parameters:
 // @raycast.schemaVersion 1
-// @raycast.title Add Random Idea
-// @raycast.mode compact
+// @raycast.title Add Idea
+// @raycast.mode silent
+// @raycast.refreshTime 1h
 
 // Optional parameters:
 // @raycast.icon 💡
 // @raycast.argument1 { "type": "text", "placeholder": "What's the idea?", "optional": false}
 // @raycast.argument2 { "type": "text", "placeholder": "Explain it!", "optional": true}
 // @raycast.argument3 { "type": "text", "placeholder": "mood", "optional": true}
+// @raycast.packageName My Scripts
 
 // Documentation:
 // @raycast.description assume i get an idea or something i want to quick note down, I can just use this command on raycast and the idea gets added on my notion page with just few key presses
@@ -24,34 +26,14 @@ const pgName = "random ideas";
 // const uri = "https://raycast-notion-random-ideas.onrender.com";
 const uri = "http://localhost:8000";
 
-// console.log(ideaTitle, ideaDesc, emotion);
-
-// axios.get(`${uri}/allIdeas`).then((res)=>{
-//     console.log(res.data);
-// })
-
 async function addIdea() {
 	const payload = { pgName, ideaTitle, ideaDesc, emotion };
 	try {
 		await axios.post(`${uri}/addIdea`, payload);
-		console.log("\t\tidea added!\n");
-        showAllIdeas();
+		console.log("Idea Added!");
 	} catch (e) {
 		console.log(e);
 	}
 }
 addIdea();
-
-async function showAllIdeas() {
-	try {
-		const res = await axios.get(`${uri}/allIdeas`);
-        res.data.reverse().forEach((idea)=>{
-            console.log(`💡 ${idea}\n`);
-        })
-	} catch (e) {
-		console.log(e);
-	}
-}
-
-
 

@@ -42,14 +42,13 @@ const getAllIdeas = async (pgName) => {
 //idea in form of a toggle list :
 //>idea title
 //    idea desc
-const addIdea = async (pgName, content, emotion) => {
+const addIdea = async (pgName, ideaTitle, ideaDesc, emotion) => {
 	const blockID = pageNameIdMap[pgName];
-
-	const ideaTitle = content.split(":")[0].trim();
-	const ideaDesc = content.split(":")[1].trim();
+	
 	let bgColor;
-	if (!emotion) {
-		bgColor = colors[Math.floor(Math.random() * colors.length())];
+	if(emotion) emotion = emotion.trim() 
+	if (emotion!=="good" || emotion!=="okay" || emotion!=="bad") {
+		bgColor = colors[Math.floor(Math.random() * colors.length)];
 	} else {
 		bgColor = colorEmotionMap[emotion];
 	}
@@ -109,9 +108,9 @@ const addIdea = async (pgName, content, emotion) => {
 //content in form :
 //idea : idea desc & eg
 app.post("/addIdea", async (req, res) => {
-	const { pgName, content, emotion } = req.body;
+	const { pgName,ideaTitle,ideaDesc, emotion } = req.body;
 	try {
-		const data = await addIdea(pgName, content, emotion);
+		const data = await addIdea(pgName, ideaTitle,ideaDesc, emotion);
 		res.status(200).json(data);
 	} catch (e) {
 		console.log(e);
