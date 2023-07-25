@@ -17,15 +17,14 @@
 
 const axios = require("axios");
 
-// const uri = "https://raycast-notion-random-ideas.onrender.com";
-const uri = "http://localhost:8000";
+const uri = "https://raycast-notion-random-ideas.onrender.com";
+// const uri = "http://localhost:8000";
 
 async function showAllIdeas() {
 	try {
 		const res = await axios.get(`${uri}/allIdeas`);
 		res.data.reverse().forEach((idea) => {
-			// console.log(`➡️ \x1b[1m ${idea}\n`);
-			console.log(`➡️ ${idea}\n \x1b[0m`);
+			console.log(`\n ➡️ ${idea}`);
 		});
 	} catch (e) {
 		console.log(e);

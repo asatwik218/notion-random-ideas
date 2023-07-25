@@ -47,7 +47,7 @@ const addIdea = async (pgName, ideaTitle, ideaDesc, emotion) => {
 	
 	let bgColor;
 	if(emotion) emotion = emotion.trim() 
-	if (emotion!=="good" || emotion!=="okay" || emotion!=="bad") {
+	if (emotion!=="good" && emotion!=="okay" && emotion!=="bad") {
 		bgColor = colors[Math.floor(Math.random() * colors.length)];
 	} else {
 		bgColor = colorEmotionMap[emotion];

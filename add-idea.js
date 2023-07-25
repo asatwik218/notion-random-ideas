@@ -21,15 +21,16 @@
 const axios = require("axios");
 
 let [ideaTitle, ideaDesc, emotion] = process.argv.slice(2);
+console.log(emotion);
 const pgName = "random ideas";
-// const uri = "https://raycast-notion-random-ideas.onrender.com";
-const uri = "http://localhost:8000";
+const uri = "https://raycast-notion-random-ideas.onrender.com";
+// const uri = "http://localhost:8000";
 
 async function addIdea() {
 	const payload = { pgName, ideaTitle, ideaDesc, emotion };
 	try {
 		await axios.post(`${uri}/addIdea`, payload);
-		console.log("Idea Added!");
+		// console.log("Idea Added!");
 	} catch (e) {
 		console.log("ERROR!");
 	}
